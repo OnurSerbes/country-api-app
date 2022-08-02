@@ -9,7 +9,7 @@ export const getData = async function(setData){
 }
 
 export const getCustomData = async function(setData, countryName){
-    await axion.get(`https://restcountries.com/v3.1/name/${countryName}`)
+    await axios.get(`https://restcountries.com/v3.1/name/${countryName}`)
     then((json)=> setData(json.data))
     .catch((e)=>{
         console.log(e)

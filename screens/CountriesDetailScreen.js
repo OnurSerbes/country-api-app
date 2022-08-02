@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { View, Text, ScrollView, Image } from "react-native"
+import CountriesDetail from "../components/CountryDetail"
 import { getCustomData } from "../util/api"
 
 function CountriesDetailScreen({route, navigation}){
@@ -9,15 +10,11 @@ function CountriesDetailScreen({route, navigation}){
     const population = route.params.population
     const language = route.params.language
     const capital= route.params.capital
+    const timezone = route.params.timezone
 
     return (
-        <View>
-            <Image source={{uri: flag}}/>
-            <Text>{name}</Text>
-            <Text>{population}</Text>
-            <Text>{language}</Text>
-            <Text>{capital}</Text>
-        </View>
+        <CountriesDetail 
+        name={name} flag={flag} population={population} language={language} capital={capital} timezone={timezone}/>
     )
 
 }

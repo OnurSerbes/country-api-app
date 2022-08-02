@@ -18,9 +18,10 @@ function CountriesOverviewScreen({navigation}){
             navigation.navigate('CountriesDetail', {
                 name: itemData.item.name,
                 flag: itemData.item.flags.png,
-                capital: itemData.item.captial,
+                capital: itemData.item.capital,
                 population: itemData.item.population,
-                languages: itemData.item.languages.naitveName,
+                timezone: itemData.item.timezones,
+                language: itemData.item.languages[0]['name'],
             })
         }
         return (

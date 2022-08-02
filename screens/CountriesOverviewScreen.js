@@ -16,8 +16,10 @@ function CountriesOverviewScreen({navigation}){
     }, []) 
 
     useEffect(()=>{
-        getCustomData(setData, changedData)
-    },[])
+        if (changedData) {
+              getCustomData(setData, changedData)
+         }
+      },[changedData])
 
     function renderCountryItem(itemData){
 

@@ -10,16 +10,18 @@ function CountriesOverviewScreen({navigation}){
 
     const [data, setData] = useState([]);
     const [changedData, setChangedData] = useState('');
+    const [search, setSearch] = useState(false);
 
     useEffect(()=>{
         getData(setData)
     }, []) 
 
-    useEffect(()=>{
-        if (changedData) {
-              getCustomData(setData, changedData)
+ /*    useEffect(()=>{
+        if (search) {
+              getCustomData(setData, changedData);
+              setSearch(false)
          }
-      },[changedData])
+      },[search]) */
 
     function renderCountryItem(itemData){
 
@@ -46,7 +48,9 @@ function CountriesOverviewScreen({navigation}){
         <View style={styles.container}>
             <SearchBar
             placeholder="Search here"
-            onSearchPress = {(text)=>{setChangedData(text)}}/>
+            onChangeText={(text) => setChangedData(text)}
+            onSearchPress={() => getCustomData(setData, changedData)}
+            />
             <FlatList
             style={styles.flatlist} 
             numColumns={2}

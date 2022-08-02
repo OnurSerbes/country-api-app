@@ -14,4 +14,5 @@ export const getCustomData = async function(setData, countryName){
     .catch((e)=>{
         console.log(e)
     }) 
+    console.log(countryName)
 }

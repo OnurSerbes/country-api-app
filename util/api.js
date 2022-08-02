@@ -9,8 +9,8 @@ export const getData = async function(setData){
 }
 
 export const getCustomData = async function(setData, countryName){
-    await axios.get(`https://restcountries.com/v3.1/name/${countryName}`)
-    then((json)=> setData(json.data))
+    await axios.get(`https://restcountries.com/v2/name/${countryName}`)
+    then((json)=> setData(json))
     .catch((e)=>{
         console.log(e)
     }) 

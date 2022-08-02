@@ -1,16 +1,23 @@
-import {FlatList, StyleSheet} from "react-native"
+import {FlatList, StyleSheet, View} from "react-native"
 import CountryItem from "../components/CountryItem"
 import { useEffect, useState } from "react";
-import { getData } from "../util/api";
+import { getCustomData, getData} from "../util/api";
+import SearchBar from "react-native-dynamic-search-bar";
+
 
 
 function CountriesOverviewScreen({navigation}){
 
     const [data, setData] = useState([]);
+    const [changedData, setChangedData] = useState('');
 
     useEffect(()=>{
         getData(setData)
     }, []) 
+
+    useEffect(()=>{
+        getCustomData(setData, changedData)
+    },[])
 
     function renderCountryItem(itemData){
 
@@ -33,19 +40,29 @@ function CountriesOverviewScreen({navigation}){
         )
     }
 
-    return <FlatList 
-    style={styles.listContainer}
-    numColumns={2}
-    data={data}
-    renderItem={renderCountryItem}
-    keyExtractor={(item, index) => String(index)}/>
+    return  (
+        <View style={styles.container}>
+            <SearchBar
+            placeholder="Search here"
+            onSearchPress = {(text)=>{setChangedData(text)}}/>
+            <FlatList
+            style={styles.flatlist} 
+            numColumns={2}
+            data={data}
+            renderItem={renderCountryItem}
+            keyExtractor={(item, index) => String(index)}/>
+        </View>
+    )
 
 }
 
 export default CountriesOverviewScreen
 
 const styles = StyleSheet.create({
-    listContainer:{
-        
+    container:{
+        marginTop: 15,
+    },
+    flatlist: {
+        margin: 10,
     }
 })
